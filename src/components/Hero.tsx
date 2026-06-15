@@ -84,7 +84,7 @@ const Hero: React.FC = () => {
             asChild
             className="bg-[#c5a059] hover:bg-white text-black rounded-none px-10 py-6 text-[11px] font-bold tracking-widest transition-all duration-300 border border-[#c5a059]"
           >
-            <Link to="/projects">VIEW PORTFOLIO</Link>
+            <Link to="/project">VIEW PROJECTS</Link>
           </Button>
 
           {/* Button 2: Get In Touch */}
