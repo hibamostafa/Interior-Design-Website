@@ -4,7 +4,7 @@ import { MapPin, ArrowUpRight, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
 // FIX: Pointing to your live Render backend
-const BASE_URL = import.meta.env.VITE_API_URL || "https://nisrinedashboardbackend-1.onrender.com";
+const BASE_URL = import.meta.env.VITE_API_URL || "https://nisrinedashboardbackend.onrender.com";
 const API_URL = `${BASE_URL}/api/projects`;
 
 const FeaturedProjects = () => {

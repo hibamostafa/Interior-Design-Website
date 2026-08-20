@@ -5,7 +5,7 @@ import { ArrowLeft, MapPin, Calendar, Tag } from 'lucide-react';
 import Navbar from '@/components/Navbar';
 import Footer from "@/components/Footer";
 
-const BASE_URL = import.meta.env.VITE_API_URL || "https://nisrinedashboardbackend-1.onrender.com";
+const BASE_URL = import.meta.env.VITE_API_URL || "https://nisrinedashboardbackend.onrender.com";
 const API_URL = `${BASE_URL}/api/projects`;
 
 const ProjectDetail = ({ isDarkMode, toggleTheme }: any) => {
