@@ -84,7 +84,7 @@ export default function Footer() {
                             </li>
                             <li className="flex items-center gap-3">
                                 <MapPin size={14} className="text-[#c5a059]" />
-                                <span>Beirut, Lebanon</span>
+                                <span>Ansar, Lebanon</span>
                             </li>
                         </ul>
                     </div>

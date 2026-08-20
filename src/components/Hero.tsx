@@ -69,7 +69,7 @@ const Hero: React.FC = () => {
           transition={{ delay: 0.4, duration: 1 }}
           className="text-white/70 text-base md:text-lg font-light mb-10 max-w-2xl mx-auto"
         >
-          Beirut-based Interior Architect specializing in photorealistic renderings. 
+          Ansar-based Interior Architect specializing in photorealistic renderings. 
           We transform conceptual ideas into breathtaking reality.
         </motion.p>
 

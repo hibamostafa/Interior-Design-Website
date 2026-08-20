@@ -71,7 +71,7 @@ const AboutDetailed = () => {
               <div className="grid grid-cols-2 gap-8 pt-8 border-t border-zinc-200 dark:border-white/10">
                 <div>
                   <h4 className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-2">Location</h4>
-                  <p className="font-medium">Beirut, Lebanon</p>
+                  <p className="font-medium">Ansar, Lebanon</p>
                 </div>
                 <div>
                   <h4 className="text-[10px] text-zinc-400 dark:text-zinc-500 uppercase tracking-widest mb-2">Languages</h4>

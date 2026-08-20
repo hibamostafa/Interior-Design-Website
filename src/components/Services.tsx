@@ -50,7 +50,7 @@ const AboutNisrine: React.FC<AboutProps> = ({ isDarkMode }) => {
               <div className="space-y-6">
                 <Compass className="text-[#c5a059] mb-4" size={32} />
                 <p className="text-[10px] tracking-[0.3em] uppercase font-bold leading-relaxed text-zinc-400 dark:text-zinc-500">
-                  Based in Beirut, LB <br />
+                  Based in Ansar, LB <br />
                   Available Worldwide
                 </p>
                 <div className="h-20 w-[1px] bg-gradient-to-b from-[#c5a059] to-transparent" />

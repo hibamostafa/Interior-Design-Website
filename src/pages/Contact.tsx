@@ -56,7 +56,7 @@ const ContactPage = ({ isDarkMode, toggleTheme }: ContactPageProps) => {
           <ContactMethod 
             icon={<MapPin size={24} />} 
             label="Studio" 
-            value="Beirut, Lebanon" 
+            value="Ansar, Lebanon" 
           />
           <ContactMethod 
             icon={<Linkedin size={24} />} 
