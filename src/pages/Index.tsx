@@ -3,10 +3,7 @@ import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import Services from "@/components/Services";
 import Experience from "@/components/Experience";
-import Mission from "@/components/Mission";
 import Testimonials from "@/components/Testimonials";
- // Create this or use your footer code
-import { Instagram, Facebook, Linkedin, Mail, Phone, MapPin } from "lucide-react";
 import Footer from "@/components/Footer";
 
 const Index = () => {
@@ -37,17 +34,14 @@ const Index = () => {
     {/* 3. Architectural Services - FIXED: Added isDarkMode prop */}
     <Services isDarkMode={isDarkMode} />
 
-    {/* 4. Mission & Vision - Add prop if Mission component needs it */}
-    <Mission />
+    {/* 4. Professional Experience */}
+    <Experience />
 
-    {/* 5. Professional Experience - Add prop if Experience component needs it */}
-    <Experience  />
-
-    {/* 7. Client Testimonials - Add prop if Testimonials component needs it */}
+    {/* 5. Client Testimonials */}
     <Testimonials />
 
-    {/* 9. Footer - Added isDarkMode prop */}
-    <Footer  />
+    {/* 6. Footer */}
+    <Footer />
   </div>
 );
 };

@@ -1,31 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { MapPin, ArrowUpRight, Heart } from "lucide-react";
 import { Link } from "react-router-dom";
 
-// FIX: Pointing to your live Render backend
-const BASE_URL = import.meta.env.VITE_API_URL || "https://nisrinedashboardbackend.onrender.com";
-const API_URL = `${BASE_URL}/api/projects`;
+const projects: any[] = [];
 
 const FeaturedProjects = () => {
-  const [projects, setProjects] = useState<any[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  // --- FETCH DATA FROM SUPABASE VIA RENDER ---
-  useEffect(() => {
-    const fetchFeatured = async () => {
-      try {
-        const response = await fetch(API_URL);
-        const data = await response.json();
-        setProjects(data);
-        setLoading(false);
-      } catch (error) {
-        console.error("Error loading featured projects:", error);
-        setLoading(false);
-      }
-    };
-    fetchFeatured();
-  }, []);
 
   // Duplicate projects for the infinite scroll effect
   const infiniteProjects = [...projects, ...projects];
@@ -48,7 +28,7 @@ const FeaturedProjects = () => {
              whileInView={{ opacity: 1 }}
              className="flex items-center gap-6 text-[10px] tracking-[0.4em] uppercase text-[#8C867E] dark:text-[#A69F95] font-bold"
           >
-            <span>{loading ? "Connecting..." : "Live Collection"}</span>
+            <span>Live Collection</span>
             <div className="w-10 h-[1px] bg-[#c5a059] animate-pulse" />
             <Link to="/portfolio" className="hover:text-[#c5a059] transition-colors flex items-center gap-2 group">
                 Browse All <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
@@ -58,11 +38,6 @@ const FeaturedProjects = () => {
       </div>
 
       <div className="relative flex">
-        {loading ? (
-            <div className="w-full text-center py-20 text-zinc-400 text-[10px] tracking-widest uppercase">
-                Loading Visuals...
-            </div>
-        ) : (
             <motion.div 
             className="flex gap-8 px-4"
             animate={{ x: ["0%", "-50%"] }}
@@ -70,7 +45,7 @@ const FeaturedProjects = () => {
                 x: {
                 repeat: Infinity,
                 repeatType: "loop",
-                duration: projects.length * 10, // Adjust speed based on number of projects
+                duration: Math.max(projects.length * 10, 10), // Adjust speed based on number of projects
                 ease: "linear",
                 },
             }}
@@ -80,7 +55,6 @@ const FeaturedProjects = () => {
                 <ProjectCard key={`${project.id}-${index}`} project={project} />
             ))}
             </motion.div>
-        )}
       </div>
     </section>
   );

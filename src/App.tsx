@@ -1,47 +1,65 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { useState, useEffect } from "react";
-import Index from "./pages/Index";
-import About from "./pages/About";
-import Project from "./pages/Project";
-import ProjectDetail from './pages/ProjectDetail';
-import Contact from "./pages/Contact";
+import React, { useState } from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+
+// Import all your pages from the src/pages folder
+import Index from './pages/Index'; 
+import ProjectPage from './pages/Project'; 
+import ProjectDetail from './pages/ProjectDetail'; // Imported the details page
+import About from './pages/About';
+import Contact from './pages/Contact';
+import NotFound from './pages/NotFound';
 
 function App() {
-  // 1. Initialize state from localStorage so it remembers user preference
-  const [isDarkMode, setIsDarkMode] = useState(() => {
-    const saved = localStorage.getItem("theme");
-    return saved ? saved === "dark" : true; // Default to dark mode
-  });
-
-  // 2. Global Effect: Apply/Remove 'dark' class on the <html> tag
-  useEffect(() => {
-    if (isDarkMode) {
-      document.documentElement.classList.add("dark");
-      localStorage.setItem("theme", "dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-      localStorage.setItem("theme", "light");
-    }
-  }, [isDarkMode]);
-
+  // Theme state shared across pages
+  const [isDarkMode, setIsDarkMode] = useState(false);
   const toggleTheme = () => setIsDarkMode(!isDarkMode);
 
-  // 3. Helper to pass props easily
-  const themeProps = { isDarkMode, toggleTheme };
-
   return (
-    <Router>
+    <Router
+      future={{
+        v7_startTransition: true,
+        v7_relativeSplatPath: true,
+      }}
+    >
       <Routes>
-        {/* Pass themeProps to EVERY route so the Navbar inside them works */}
-        <Route path="/" element={<Index />} />
-        
-        <Route path="/about" element={<About  />} />
-        
-        <Route path="/project" element={<Project  />} />
-        
-        <Route path="/project/:id" element={<ProjectDetail />} />
-        
-        <Route path="/contact" element={<Contact {...themeProps} />} />
+        {/* 1. Homepage */}
+        <Route 
+          path="/" 
+          element={<Index />} 
+        />
+
+        {/* 2. Portfolio / Projects Gallery Page */}
+        <Route 
+          path="/projects" 
+          element={<ProjectPage isDarkMode={isDarkMode} toggleTheme={toggleTheme} />} 
+        />
+
+        {/* 3. Unique project details route (Fixed to render ProjectDetail) */}
+        <Route
+          path="/projects/:projectId"
+          element={<ProjectDetail isDarkMode={isDarkMode} toggleTheme={toggleTheme} />}
+        />
+
+        {/* 4. Backward-compatible singular project details route (Fixed to render ProjectDetail) */}
+        <Route
+          path="/project/:projectId"
+          element={<ProjectDetail isDarkMode={isDarkMode} toggleTheme={toggleTheme} />}
+        />
+
+        {/* 5. About Page */}
+        <Route 
+          path="/about" 
+          element={<About />} 
+        />
+
+        {/* 6. Contact Page */}
+        <Route 
+          path="/contact" 
+          element={<Contact isDarkMode={isDarkMode} toggleTheme={toggleTheme} />} 
+        />
+
+        {/* 7. Fallback 404 Page */}
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </Router>
   );

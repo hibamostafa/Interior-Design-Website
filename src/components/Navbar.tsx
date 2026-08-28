@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Menu, Sun, Moon } from "lucide-react";
+import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Sheet, SheetContent, SheetTrigger } from "./ui/sheet";
+import { Sheet, SheetClose, SheetContent, SheetTrigger } from "./ui/sheet";
 import logo from "@/images/logo.png";
 
 interface NavbarProps {
@@ -21,7 +22,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
   const navItems = [
     { label: "HOME", href: "/" },
     { label: "ABOUT", href: "/about" },
-    { label: "PROJECT", href: "/project" },
+    { label: "PROJECT", href: "/projects" },
     { label: "CONTACT", href: "/contact" }
   ];
 
@@ -34,8 +35,8 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
       <div className="max-w-7xl mx-auto flex items-center justify-between">
         
         {/* LOGO */}
-        <div className="relative group">
-          <img 
+        <Link to="/" aria-label="Nisrine Masri home" className="relative group">
+          <img
             src={logo} 
             alt="Nisrine Masri Logo" 
             className={`
@@ -47,14 +48,14 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
               }
             `}
           />
-        </div>
+        </Link>
 
         {/* Desktop Links */}
         <div className="hidden lg:flex items-center gap-10">
           {navItems.map((item) => (
-            <a
+            <Link
               key={item.label}
-              href={item.href}
+              to={item.href}
               className={`
                 text-[11px] tracking-[0.2em] font-bold transition-all duration-300
                 hover:text-[#c5a059]
@@ -65,7 +66,7 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
               `}
             >
               {item.label}
-            </a>
+            </Link>
           ))}
 
           {/* Theme Toggle */}
@@ -93,13 +94,14 @@ const Navbar: React.FC<NavbarProps> = ({ isDarkMode, toggleTheme }) => {
           <SheetContent side="right" className="bg-[#F5F2ED] dark:bg-zinc-900 border-none">
             <div className="flex flex-col gap-8 mt-20 text-center uppercase tracking-[0.3em] font-bold">
               {navItems.map((item) => (
-                <a 
-                  key={item.label} 
-                  href={item.href} 
-                  className="text-xl text-zinc-900 dark:text-white hover:text-[#c5a059] transition-colors"
-                >
-                  {item.label}
-                </a>
+                <SheetClose asChild key={item.label}>
+                  <Link
+                    to={item.href}
+                    className="text-xl text-zinc-900 dark:text-white hover:text-[#c5a059] transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </SheetClose>
               ))}
               <div className="pt-8 border-t border-zinc-200 dark:border-zinc-800">
                 <Button 
